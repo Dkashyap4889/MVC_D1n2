@@ -1,0 +1,45 @@
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bin/
+obj/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## NuGet
+packages/
+*.nupkg
+*.snupkg
+
+## Logs
+*.log
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## ASP.NET
+wwwroot/lib/
+wwwroot/dist/
+
+## IIS Express
+.vs/config/applicationhost.config
+
+## Test results
+TestResults/
+
+## Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper

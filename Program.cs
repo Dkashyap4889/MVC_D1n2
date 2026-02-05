@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MVC_Assignment.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MVC_AssignmentContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MVC_AssignmentContext") ?? throw new InvalidOperationException("Connection string 'MVC_AssignmentContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,13 +27,13 @@ app.UseAuthorization();
 app.MapStaticAssets();
 
 app.MapControllerRoute(
-    name: "product",
-    pattern: "{controller=Product}/{action=Index}")
-    .WithStaticAssets();
-
-app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<MVC_AssignmentContext>();
+    context.Database.EnsureCreated();
+}
 app.Run();
